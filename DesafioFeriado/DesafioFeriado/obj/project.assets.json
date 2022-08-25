@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maria.pedroso\\Desktop\\DesafioFeriado-main\\DesafioFeriado\\DesafioFeriado\\DesafioFeriado.csproj",
+      "projectUniqueName": "C:\\Users\\maria.pedroso\\Desktop\\DesafioRecibos\\DesafioFeriado\\DesafioFeriado\\DesafioFeriado.csproj",
       "projectName": "DesafioFeriado",
-      "projectPath": "C:\\Users\\maria.pedroso\\Desktop\\DesafioFeriado-main\\DesafioFeriado\\DesafioFeriado\\DesafioFeriado.csproj",
+      "projectPath": "C:\\Users\\maria.pedroso\\Desktop\\DesafioRecibos\\DesafioFeriado\\DesafioFeriado\\DesafioFeriado.csproj",
       "packagesPath": "C:\\Users\\maria.pedroso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maria.pedroso\\Desktop\\DesafioFeriado-main\\DesafioFeriado\\DesafioFeriado\\obj\\",
+      "outputPath": "C:\\Users\\maria.pedroso\\Desktop\\DesafioRecibos\\DesafioFeriado\\DesafioFeriado\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maria.pedroso\\AppData\\Roaming\\NuGet\\NuGet.Config",

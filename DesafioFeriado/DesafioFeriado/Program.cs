@@ -55,12 +55,16 @@ class MetodoParaDescobrirSeDiaEFeriado
 
             while (!saida)
             {
-                if (ListaRecibos[i].CompararSeEFeriadoFixo() || ListaRecibos[i].CompararSeEFeriadoNaoFixo() || (int)ListaRecibos[i].GetData().DayOfWeek == 0 || (int)ListaRecibos[i].GetData().DayOfWeek == 6)
+                if (ListaRecibos[i].CompararSeEFeriadoFixo() || 
+                   ListaRecibos[i].CompararSeEFeriadoNaoFixo() ||
+                    ListaRecibos[i].CompararFinalDeSemana())//TODO: MELHORAR PROCESSAMENTO?
                 {
                     ListaRecibos[i].AcrescentarUmDia();
-                    break;
+                    saida =false;
                 }
-                saida = true;
+                else {
+                    saida = true;
+                }
             }
         }
     }

@@ -50,6 +50,15 @@ namespace DesafioFeriado
             this.anoAdquirido = DataAdquiridaDate.Year.ToString();
         }
 
+        public bool CompararFinalDeSemana()
+        {
+            if ((int) this.DataAdquiridaDate.DayOfWeek == 0 ||
+                    (int)this.DataAdquiridaDate.DayOfWeek == 6)
+            {
+                return true;
+            }
+            return false;
+        }
         public bool CompararSeEFeriadoFixo()
         {
             var FeriadosFixos = "-01/01-21/04-01/05-07/09-12/10-02/11-15/11-25/12-";
@@ -79,7 +88,8 @@ namespace DesafioFeriado
 
             if (this.DataAdquiridaDate == diaPascoa || this.DataAdquiridaDate == diaPascoa.AddDays(60) || this.DataAdquiridaDate == diaPascoa.AddDays(-48)
                 || this.DataAdquiridaDate == diaPascoa.AddDays(-2) || this.DataAdquiridaDate == diaPascoa.AddDays(-46))
-            /*
+            
+                /*
              * diaPascoa.AddDays(60) -> Corpus Christ
              * diaPascoa.AddDays(-48) -> Carnaval
              * diaPascoa.AddDays(-2) -> Sexta Santa
