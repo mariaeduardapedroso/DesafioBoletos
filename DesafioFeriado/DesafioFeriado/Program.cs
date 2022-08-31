@@ -7,24 +7,29 @@ class MetodoParaDescobrirSeDiaEFeriado
     {
         var TesteDataFormato = "[0-9]{2}[/][0-9]{2}[/][0-9]{4}";
         string DataAdquiridaString;
+        int Parcelas = 0;
+        bool AdquirirValorParcelas;
 
         Console.WriteLine("----BEM VINDO AO GERADOR DE RECIBOS ME DIGA A DATA DO PRIMEIRO BOLETO----");
-        Console.WriteLine("Digite a data com dd/mm/aa");
+        Console.WriteLine("Digite a data com dd/mm/aaaa");
         DataAdquiridaString = Console.ReadLine();
+
+        Console.WriteLine("Digite a quantidade de boletos");
+        AdquirirValorParcelas = Int32.TryParse(Console.ReadLine(),out Parcelas);
         GracinhaParaMostrarOResultado();
 
         Match resultado1 = Regex.Match(DataAdquiridaString, TesteDataFormato);
             
-        if (resultado1.Success)
+        if (resultado1.Success && Parcelas > 0 && AdquirirValorParcelas)
         {
             List<VerSeADataEFeriado> ListaRecibos = new List<VerSeADataEFeriado>();
-            GeradorDeRecibos(DataAdquiridaString, ListaRecibos);
+            GeradorDeRecibos(DataAdquiridaString, ListaRecibos,Parcelas);
 
             Console.WriteLine();
-            Console.WriteLine("BOLETO");
-            for (int i = 0; i < 12; i++)
+            Console.WriteLine($"BOLETO COM {Parcelas} PARCELAS GERADO COM SUCESSO!");
+            for (int i = 0; i < Parcelas; i++)
             {
-                Console.WriteLine(ListaRecibos[i].GetData());
+                Console.WriteLine($"Vencimento da Parcela {i+1} - " + ListaRecibos[i].GetData());
             }
 
             Console.WriteLine("PRESSIONE ENTER PARA SAIR");
@@ -33,38 +38,37 @@ class MetodoParaDescobrirSeDiaEFeriado
             return;
 
         }
-        Console.WriteLine(DataAdquiridaString + " É UMA DATA ILEGIVEL");
+        Console.WriteLine("INFELIZMENTE ALGUM DADO QUE ME FORNECEU ESTÁ INCORRETO, RECIBO NÃO GERADO");
         return;
 
     }
 
 
-    private static void GeradorDeRecibos(string DataAdquiridaString, List<VerSeADataEFeriado> ListaRecibos)
+    private static void GeradorDeRecibos(string DataAdquiridaString, List<VerSeADataEFeriado> ListaRecibos,int qdeParcelas)
     {
         VerSeADataEFeriado DataAdquirida = new VerSeADataEFeriado(DataAdquiridaString);
         var saida = true;
 
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < qdeParcelas; i++)
         {
             ListaRecibos.Add(new VerSeADataEFeriado(DataAdquirida.GetData().AddMonths(i)));
         }
 
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < qdeParcelas; i++)
         {
             saida = false;
 
             while (!saida)
             {
-                if (ListaRecibos[i].CompararSeEFeriadoFixo() || 
-                   ListaRecibos[i].CompararSeEFeriadoNaoFixo() ||
+                if (ListaRecibos[i].CompararSeEFeriadoFixo() ||  ListaRecibos[i].CompararSeEFeriadoNaoFixo() ||
                     ListaRecibos[i].CompararFinalDeSemana())//TODO: MELHORAR PROCESSAMENTO?
                 {
                     ListaRecibos[i].AcrescentarUmDia();
-                    saida =false;
                 }
                 else {
                     saida = true;
                 }
+
             }
         }
     }

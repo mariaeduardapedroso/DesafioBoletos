@@ -59,9 +59,10 @@ namespace DesafioFeriado
             }
             return false;
         }
+
         public bool CompararSeEFeriadoFixo()
         {
-            var FeriadosFixos = "-01/01-21/04-01/05-07/09-12/10-02/11-15/11-25/12-";
+            var FeriadosFixos = "-1/1-21/4-1/5-7/9-12/10-2/11-15/11-25/12-";
             /*
             * Confraternização Universal:	1 janeiro
             * Tiradentes	21 abril
@@ -73,7 +74,7 @@ namespace DesafioFeriado
             * Natal	25 dezembro
             */
             string DiaMes = string.Format("-{0}/{1}-", this.diaAdquirido, this.mesAdquirido);
-
+            
             Match compararFeriadoFixo = Regex.Match(FeriadosFixos, DiaMes);
             if (compararFeriadoFixo.Success)
             {
